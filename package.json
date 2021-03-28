@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "passport-dapp-web3": "^1.0.2",
+    "unique-names-generator": "^4.4.0",
     "web3": "^1.3.4"
   }
 }
