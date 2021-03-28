@@ -1,0 +1,29 @@
+{
+	"id": "nodebb-plugin-sso-web3",
+	"url": "https://github.com/NodeBB/nodebb-plugin-sso-web3",
+	"library": "./library.js",
+	"hooks": [
+		{ "hook": "static:app.load", "method": "init" },
+		{ "hook": "filter:auth.init", "method": "filterAuthInit" },
+		{ "hook": "filter:auth.list", "method": "filterAuthList" },
+		{ "hook": "filter:admin.header.build", "method": "addMenuItem" },
+		{ "hook": "static:user.delete", "method": "deleteUserData" },
+		{ "hook": "filter:register.interstitial", "method": "prepareInterstitial" },
+		{ "hook": "filter:user.whitelistFields", "method": "appendUserHashWhitelist" }
+	],
+	"staticDirs": {
+		"static": "./static"
+	},
+	"less": [
+		"static/style.less"
+	],
+	"scripts": [
+		"static/lib/main.js"
+	],
+	"acpScripts": [
+		"static/lib/admin.js"
+	],
+	"modules": {
+		"web3.js": "node_modules/web3/dist/web3.min.js"
+	}
+}
