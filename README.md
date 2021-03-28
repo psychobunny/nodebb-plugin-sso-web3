@@ -1,6 +1,6 @@
 # Web3 SSO for NodeBB forums
 
-Allows you to authenticate with NodeBB forums using your crypto wallet via Web3 providers.
+Allows you to authenticate with NodeBB forums using your crypto wallet via Web3 clients.
 
 Use a browser that supports Web3 out of the box such as [Opera Browser](https://www.opera.com/crypto), [Brave](https://brave.com/) or similar ([Add your Web3 browser / browser plugin here!](https://github.com/psychobunny/nodebb-plugin-sso-web3/edit/main/README.md)).
 
@@ -8,7 +8,7 @@ Alternatively, download a browser plugin such as [MetaMask](https://metamask.io)
 
 ## Screenshots
 
-A picture is worth a thousand words, so here is four thousand for you.
+A picture is worth a thousand words, so here is five thousand for you.
 
 ![permissions](./screenshots/1.png)
 ![authenticate](./screenshots/2.png)
