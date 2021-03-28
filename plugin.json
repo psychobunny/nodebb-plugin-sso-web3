@@ -7,7 +7,7 @@
 		{ "hook": "filter:auth.init", "method": "filterAuthInit" },
 		{ "hook": "filter:auth.list", "method": "filterAuthList" },
 		{ "hook": "filter:admin.header.build", "method": "addMenuItem" },
-		{ "hook": "static:user.delete", "method": "deleteUserData" },
+		{ "hook": "static:user.delete", "method": "staticUserDelete" },
 		{ "hook": "filter:register.interstitial", "method": "prepareInterstitial" },
 		{ "hook": "filter:user.whitelistFields", "method": "appendUserHashWhitelist" }
 	],

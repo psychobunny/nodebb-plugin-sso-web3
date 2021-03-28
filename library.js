@@ -2,6 +2,7 @@
 
 const controllers = require('./lib/controllers');
 const auth = require('./lib/auth');
+const deauth = require('./lib/deauth');
 const routeHelpers = require.main.require('./src/routes/helpers');
 const plugin = {};
 
@@ -41,8 +42,10 @@ plugin.filterAuthInit = async loginStrategies => {
 };
 
 plugin.filterAuthList = async authList => {
-	const uid = authList.uid;
-	const associations = authList.associations;
+	const { uid, associations } = authList;
+	return authList;
 };
+
+plugin.staticUserDelete = deauth.deleteUserData;
 
 module.exports = plugin;
