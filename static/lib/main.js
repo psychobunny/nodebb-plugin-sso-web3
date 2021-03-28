@@ -1,4 +1,5 @@
 'use strict';
+
 /* globals document, web3, $ */
 
 $(document).ready(() => {
@@ -20,22 +21,25 @@ $(document).ready(() => {
 		});
 	}
 
-	if (config.uid && config.requireEmailConfirmation && !app.user.email) {
-		showWelcomeMessage();
-	}
-
-	if (config.uid || !window.ethereum) {
-		return;
-	}
-
-	require(['web3'], (Web3) => {
-		window.web3 = new Web3(window.ethereum);
-		window.ethereum.enable().then(() => {
-			web3.eth.getAccounts().then(sign);
-		}, err => {
-			throw new Error(err);
+	const authenticate = () => {
+		require(['web3'], (Web3) => {
+			window.web3 = new Web3(window.ethereum);
+			window.ethereum.enable().then(() => {
+				web3.eth.getAccounts().then(sign);
+			}, err => {
+				throw new Error(err);
+			});
 		});
-	});
+	};
+
+	const deauthenticate = () => {	
+		fetch(`${config.relative_path}/deauth/web3`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json', 'x-csrf-token': config.csrf_token },
+		}).then(() => {
+			ajaxify.go(`${config.relative_path}/me/edit`);
+		}).catch(err => { console.log(err); });
+	};
 
 	const sign = accounts => {
 		if (!accounts.length) {
@@ -46,7 +50,7 @@ $(document).ready(() => {
 		const message = config.termsOfUse ? config.termsOfUse : `Welcome to ${config.siteTitle || 'NodeBB'}`;
 
 		web3.eth.personal.sign(message, address).then(signed => {
-			fetch(config.relative_path + '/auth/web3', {
+			fetch(`${config.relative_path}/auth/web3`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json', 'x-csrf-token': config.csrf_token },
 				body: JSON.stringify({
@@ -54,9 +58,29 @@ $(document).ready(() => {
 					message: message,
 					signed: signed,
 				}),
-			}).then(() => {
-				window.location.reload();
+			}).then((a) => {
+				console.log('here', a);
+				if (ajaxify.data.template.name === 'account/edit') {
+					ajaxify.go(`${config.relative_path}/me/edit`);
+				} else {
+					window.location.reload();
+				}
 			}).catch(err => { console.log(err); });
 		}).catch(err => { console.log(err); });
 	}
+	
+	if (config.uid && config.requireEmailConfirmation && !app.user.email) {
+		showWelcomeMessage();
+	}
+
+	if (!config.uid && window.ethereum) {
+		authenticate();
+	}
+
+	$(window).on('action:ajaxify.end', () => {
+		if (ajaxify.data.template.name === 'account/edit') {
+			$('[data-component="web3/associate"]').on('click', authenticate);
+			$('[data-component="web3/disassociate"]').on('click', deauthenticate);
+		}
+	});
 });

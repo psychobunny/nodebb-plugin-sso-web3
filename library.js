@@ -1,9 +1,9 @@
 'use strict';
 
+const user = require.main.require('./src/user');
 const controllers = require('./lib/controllers');
 const auth = require('./lib/auth');
 const deauth = require('./lib/deauth');
-const routeHelpers = require.main.require('./src/routes/helpers');
 const plugin = {};
 
 plugin.init = async params => {
@@ -13,7 +13,6 @@ plugin.init = async params => {
 	router.get('/admin/plugins/sso/web3', middleware.admin.buildHeader, controllers.renderAdminPage);
 	router.get('/api/admin/plugins/sso/web3', controllers.renderAdminPage);
 	router.post('/deauth/web3', [middleware.requireUser, middleware.applyCSRF], controllers.deauth);
-	routeHelpers.setupPageRoute(router, '/deauth/web3', middleware, [middleware.requireUser], controllers.renderDeauth);
 
 	auth.init();
 };
@@ -43,7 +42,33 @@ plugin.filterAuthInit = async loginStrategies => {
 
 plugin.filterAuthList = async authList => {
 	const { uid, associations } = authList;
+	const address = await user.getUserField(uid, 'web3:address');
+
+	if (address) {
+		associations.push({
+			associated: true,
+			url: `https://www.blockchain.com/eth/address/${address}`,
+			deauthUrl: '#',
+			name: 'web3 address',
+			icon: 'fa fa-address-card',
+			component: 'web3/disassociate',
+		});
+	} else {
+		associations.push({
+			associated: false,
+			name: 'web3 address',
+			url: '#',
+			icon: 'fa fa-address-card',
+			component: 'web3/associate',
+		});
+	}
+
 	return authList;
+};
+
+plugin.filterUserWhitelistFields = async data => {
+	data.whitelist.push('web3:address');
+	return data;
 };
 
 plugin.staticUserDelete = deauth.deleteUserData;
