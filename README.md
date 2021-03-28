@@ -2,7 +2,7 @@
 
 Allows you to authenticate with NodeBB forums using your crypto wallet via Web3 providers.
 
-Use a browser that supports Web3 out of the box such as [Opera Browser](https://www.opera.com/crypto), [Brave] or similar ([Add your Web3 browser / browser plugin here!](https://github.com/psychobunny/nodebb-plugin-sso-web3/edit/main/README.md)).
+Use a browser that supports Web3 out of the box such as [Opera Browser](https://www.opera.com/crypto), [Brave](https://brave.com/) or similar ([Add your Web3 browser / browser plugin here!](https://github.com/psychobunny/nodebb-plugin-sso-web3/edit/main/README.md)).
 
 Alternatively, download a browser plugin such as [MetaMask](https://metamask.io).
 
