@@ -6,6 +6,17 @@ Use a browser that supports Web3 out of the box such as [Opera Browser](https://
 
 Alternatively, download a browser plugin such as [MetaMask](https://metamask.io).
 
+## Screenshots
+
+A picture is worth a thousand words, so here is four thousand for you.
+
+![permissions](./screenshots/1.png)
+![authenticate](./screenshots/2.png)
+![mobile-2fa](./screenshots/3.png)
+![success](./screenshots/4.png)
+
+
+
 ## Help! I don't know what I'm doing!
 
 Neither do I, but you can visit our [NodeBB forums](https://community.nodebb.org) and if I'm free (toomanyprojects.gif) I can help you figure it out. Alternatively you can file an issue and I'll try to support this.
