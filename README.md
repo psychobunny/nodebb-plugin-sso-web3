@@ -15,7 +15,9 @@ A picture is worth a thousand words, so here is four thousand for you.
 ![mobile-2fa](./screenshots/3.png)
 ![success](./screenshots/4.png)
 
+Metamask allows you to show a message to the user, which is taken from your forum's Terms of Service (ACP -> Settings -> User -> User Registration -> Forum Terms of Use). 
 
+![metamask-tos](./screenshots/metamask.png) 
 
 ## Help! I don't know what I'm doing!
 
