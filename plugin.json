@@ -1,6 +1,6 @@
 {
 	"id": "nodebb-plugin-sso-web3",
-	"url": "https://github.com/NodeBB/nodebb-plugin-sso-web3",
+	"url": "https://github.com/skeetzo/nodebb-plugin-sso-web3",
 	"library": "./library.js",
 	"hooks": [
 		{ "hook": "static:app.load", "method": "init" },

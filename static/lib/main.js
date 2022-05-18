@@ -59,11 +59,14 @@ $(document).ready(() => {
 					signed: signed,
 				}),
 			}).then((a) => {
-				console.log('here', a);
 				if (ajaxify.data.template.name === 'account/edit') {
 					ajaxify.go(`${config.relative_path}/me/edit`);
 				} else {
-					window.location.reload();
+					ajaxify.go("/");
+					// BUG
+					// page reloads before going to "/"
+					// was working previously without timeout
+					setTimeout(function() {window.location.reload();}, 500)
 				}
 			}).catch(err => { console.log(err); });
 		}).catch(err => { console.log(err); });
@@ -73,7 +76,8 @@ $(document).ready(() => {
 		showWelcomeMessage();
 	}
 
-	if (!config.uid && window.ethereum) {
+	// only prompt web3 login when user requests to do so
+	if (!config.uid && window.ethereum && window.location.href.includes("/auth/web3")) {
 		authenticate();
 	}
 

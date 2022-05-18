@@ -20,7 +20,7 @@ plugin.init = async params => {
 plugin.addMenuItem = async header => {
 	header.plugins.push({
 		route: '/plugins/sso/web3',
-		icon: 'fa-address-card',
+		icon: 'fa-ethereum',
 		name: 'Web3 SSO',
 	});
 
@@ -33,7 +33,7 @@ plugin.filterAuthInit = async loginStrategies => {
 		url: '/auth/web3',
 		urlMethod: 'post',
 		callbackURL: '/auth/web3/callback',
-		icon: 'fa fa-address-card',
+		icon: 'fa-ethereum',
 		scope: ''
 	});
 
@@ -47,10 +47,10 @@ plugin.filterAuthList = async authList => {
 	if (address) {
 		associations.push({
 			associated: true,
-			url: `https://www.blockchain.com/eth/address/${address}`,
+			url: `https://www.etherscan.io/address/${address}`,
 			deauthUrl: '#',
 			name: 'web3 address',
-			icon: 'fa fa-address-card',
+			icon: 'fa-ethereum',
 			component: 'web3/disassociate',
 		});
 	} else {
@@ -58,7 +58,7 @@ plugin.filterAuthList = async authList => {
 			associated: false,
 			name: 'web3 address',
 			url: '#',
-			icon: 'fa fa-address-card',
+			icon: 'fa-ethereum',
 			component: 'web3/associate',
 		});
 	}

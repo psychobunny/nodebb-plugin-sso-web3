@@ -7,6 +7,11 @@
 				<input type="text" id="setting-1" name="setting-1" title="Setting 1" class="form-control" placeholder="Setting 1">
 			</div>
 
+			<div class="form-group">
+				<label for="setting-2">Setting 2</label>
+				<input type="text" id="setting-2" name="setting-2" title="Setting 2" class="form-control" placeholder="Setting 2">
+			</div>
+
 			<div class="checkbox">
 				<label for="setting-3" class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
 					<input type="checkbox" class="mdl-switch__input" id="setting-3" name="setting-3">
